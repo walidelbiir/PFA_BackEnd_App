@@ -10,5 +10,5 @@ const connectDB= async ()=>{
     .then(()=>console.log("DB connected"))
     .catch(err => console.error(err));      
 }    
-module.exports=connectDB;
+module.exports=connectDB;    
      
