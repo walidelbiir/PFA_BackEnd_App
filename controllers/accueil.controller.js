@@ -92,6 +92,7 @@ exports.modifyImage=async (req,res)=>{
 
 
 exports.activatedAccueilPosts=(req,res)=>{
+  try{
     http_requests.inc()
     http_requests.inc({path:'/active/post'})
     Accueil.find({isActive:true})
@@ -100,11 +101,17 @@ exports.activatedAccueilPosts=(req,res)=>{
       http_requests.inc({code : 200})
       http_requests.inc({code : 200 , path : '/active/post'})
   })
-    .catch(err=>{
+    .catch(()=>{
       res.status(400).send({message:"no data returned"})
       http_requests.inc({code : 400})
       http_requests.inc({code : 400 , path : '/active/post'})
-  })
+    })
+  }
+  catch(e) {
+    res.status(400).send({message:"no data returned"})
+    http_requests.inc({code : 400})
+    http_requests.inc({code : 400 , path : '/active/post'})
+  }
 }
 exports.allAccueilPosts=(req,res)=>{
     Accueil.find()

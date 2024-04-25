@@ -7,7 +7,8 @@ const connectDB=require('./config/connectDB');
 const swaggerUi = require('swagger-ui-express'),
 swaggerDocument = require('./swagger/swagger.json');
 const http = require('http')
-const client = require('prom-client')
+const client = require('prom-client');
+const { Module } = require('module');
 
 //.env configuration
 dotenv.config();
@@ -55,3 +56,5 @@ app.listen(process.env.PORT || 6000,(err)=>err?console.log("can't start server")
 metrics_server.listen(5001 , () => {
   console.log('Metrics Server is running on port 5001')
 })
+
+module.exports = {app}
