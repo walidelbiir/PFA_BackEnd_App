@@ -8,6 +8,6 @@ const connectDB= async ()=>{
     const mongoUri = process.env.NODE_ENV === 'test' ? await mongoServer.getUri() : process.env.MONGO_URI;
     mongoose.connect(mongoUri,{ useNewUrlParser: true ,useUnifiedTopology: true })
     .then(()=>console.log("DB connected"))
-    .catch(err => console.error(err));
+    .catch(err => console.error(err));   
 }
 module.exports=connectDB;
